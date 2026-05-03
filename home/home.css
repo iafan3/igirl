@@ -171,7 +171,7 @@ html.skipDisc .popupDisc {
   border: 2px solid white;
   background: rgba(10, 10, 20, 0.95);
 
-  filter: drop-shadow(8px 8px 0 #ff1f2d);
+  : drop-shadow(8px 8px 0 #ff1f2d);
 }
 
 .boxPause h1 {
@@ -223,6 +223,10 @@ html.skipDisc .popupDisc {
   object-position: center;
 
   pointer-events: none;
+
+  filter: saturate(1.35) contrast(1.15) brightness(1.05);
+  transform: none;
+  animation: none;
   background: #000; 
 
   opacity: 0;
