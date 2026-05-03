@@ -194,9 +194,8 @@ function playIntroVid() {
   vidIntro.currentTime = 0;
 
   vidIntro.classList.add("playing");
-  vidIntro.play().catch(() => {}); // attempt play, never bail early on failure
+  vidIntro.play().catch(() => {}); 
 
-  // One trigger only. No events, no conditions.
   setTimeout(switchToLoop, 6000);
 }
 
@@ -643,8 +642,6 @@ function guardBgVid(video) {
       tryPlay();
     }, 120);
   }
-
-  // ── Event-based recovery ──────────────────────────────────────────────────
 
   video.addEventListener("pause",   () => { setTimeout(tryPlay, 80); });
   video.addEventListener("stalled",  softRestart);
