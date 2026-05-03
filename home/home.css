@@ -782,7 +782,7 @@ html.skipDisc .popupDisc {
 .screenUnsupported {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
 
   display: none;
   place-items: center;
