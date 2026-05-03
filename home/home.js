@@ -231,8 +231,6 @@ function enterSite() {
 
   startMusic(true);
 
-  playBgVid();
-
   playIntroVid();
 
   startIntro();
