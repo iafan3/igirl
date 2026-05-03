@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Disclaimer!</title>
+
+  <link
+    id="siteIcon"
+    rel="icon"
+    href="home/assets/icondisclaimer.png"
+  />
+
+  <script>
+    try {
+      if (sessionStorage.getItem("discAccepted") === "true") {
+        document.documentElement.classList.add("skipDisc");
+        document.title = "Home";
+
+        const icon = document.getElementById("siteIcon");
+
+        if (icon) {
+          icon.href = "home/assets/icon.png";
+        }
+      }
+    } catch (error) {}
+  </script>
+
+  <link rel="stylesheet" href="home/home.css?v=13" />
+</head>
+
+<body>
+  <div class="screenUnsupported">
+    Unsupported screen size.<br>
+    Try adjusting screen size!
+  </div>
+
+  <main class="pageMenu" id="pageMenu">
+    <video
+      id="vidBg"
+      class="vidBg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="home/assets/bgfallback.png"
+    >
+      <source src="home/assets/loop.mp4" type="video/mp4" />
+    </video>
+
+    <video
+  id="vidIntro"
+  class="vidIntro"
+  muted
+  playsinline
+  preload="auto"
+>
+  <source src="home/assets/intro.mp4" type="video/mp4" />
+</video>
+
+    <div class="numMenu" id="numMenu">01</div>
+
+    <nav class="menuMain" aria-label="Main menu">
+      <a class="itemMenu active" href="skill.html" title="About Webmaster">ABOUT</a>
+      <a class="itemMenu" href="music/music.html" title="Listen to Music">ITEM</a>
+      <a class="itemMenu" href="blog/blog.html" title="View Diary">DIARY</a>
+      <a class="itemMenu" href="shrine/shrine.html" title="Visit Shrine">SHRINE</a>
+      <a class="itemMenu" href="stats.html" title="View Stats">STATS</a>
+      <a class="itemMenu" href="social.html" title="Link to Socials">SOCIALS</a>
+      <a class="itemMenu" href="system.html" title="Website Settings">SETTINGS</a>
+    </nav>
+
+    <section class="cmd">
+      <p id="titleHint">About Webmaster</p>
+      <span>Command</span>
+    </section>
+
+    <section class="ctrls">
+      <span><b>Enter</b> Confirm</span>
+      <span><b>Esc</b> Close</span>
+    </section>
+
+    <audio id="audMove" src="home/assets/menu-move.mp3" preload="auto"></audio>
+    <audio id="audConfirm" src="home/assets/menu-confirm.mp3" preload="auto"></audio>
+    <audio id="audBg" src="home/assets/bgmusic.mp3" autoplay muted loop preload="auto"></audio>
+  </main>
+
+  <div class="screenPause" id="screenPause" hidden>
+    <div class="boxPause">
+      <h1>Paused</h1>
+      <p>Click, tap, or press any key to resume.</p>
+    </div>
+  </div>
+
+  <div class="popupDisc" id="popupDisc">
+    <div class="boxDisc">
+      <h1>Disclaimer</h1>
+
+      <p>
+        This website contains:<br>
+        - flashing imagery<br>
+        - bright themes<br>
+        - javascript<br>
+        - mature content<br>
+        - iframes
+      </p>
+
+      <p>
+        Press Enter or click the button below to enter!
+      </p>
+
+      <button id="btnEnter" type="button">To the unknown...</button>
+    </div>
+  </div>
+
+  <svg class="svgFilters" aria-hidden="true" focusable="false">
+    <defs>
+      <filter
+        id="textRipple"
+        x="-30%"
+        y="-60%"
+        width="180%"
+        height="220%"
+        color-interpolation-filters="sRGB"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.018 0.08"
+          numOctaves="1"
+          seed="8"
+          result="noise"
+        >
+          <animate
+            attributeName="baseFrequency"
+            dur="2.4s"
+            values="0.018 0.08;0.026 0.11;0.018 0.08"
+            repeatCount="indefinite"
+          />
+        </feTurbulence>
+
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="4"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        >
+          <animate
+            attributeName="scale"
+            dur="2.4s"
+            values="2;5;2"
+            repeatCount="indefinite"
+          />
+        </feDisplacementMap>
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="home/home.js?v=13"></script>
+</body>
+</html>
