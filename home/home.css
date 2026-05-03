@@ -299,7 +299,7 @@ html.skipDisc .popupDisc {
   font-size: var(--size);
   font-weight: 950;
   line-height: 0.9;
-  letter-spacing: -3px;
+  letter-spacing: -1px;
   text-transform: uppercase;
 
   opacity: 0;
