@@ -560,7 +560,6 @@ window.addEventListener("pageshow", event => {
 
 
 if (hasEntered) {
-  introVideoDone = true;
 
   setPageIcon(true);
 
@@ -571,23 +570,11 @@ if (hasEntered) {
     screenPause.hidden = true;
   }
 
-  if (vidIntro) {
-    vidIntro.classList.add("done");
-    try {
-      vidIntro.pause();
-      vidIntro.removeAttribute("src");
-      vidIntro.load();
-    } catch (_) {}
-  }
-
   startIntro();
   startMusic(false);
-  playBgVid();
   queueMusicStart();
 
-  guardBgVid(vidBg);
-
-} else {
+ } else {
   setPageIcon(false);
 
   if (screenPause) {
