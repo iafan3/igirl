@@ -30,7 +30,7 @@ body {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #ffffff;
+  background: #ffffff00;
   font-family: menuFontB, Arial, Helvetica, sans-serif;
 }
 
@@ -209,7 +209,7 @@ html.skipDisc .popupDisc {
   animation: none;
 
   pointer-events: none;
-  background: #ffffff;
+  background: #ffffff00;
 }
 
 .vidIntro {
@@ -798,8 +798,4 @@ html.skipDisc .popupDisc {
   line-height: 1.1;
   text-align: center;
   text-transform: uppercase;
-
-  text-shadow:
-    4px 4px 0 #0040c0,
-    8px 8px 0 rgba(0, 0, 0, 0.3);
 }
