@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>diary</title>
+
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="https://unpkg.com/@arraypress/waveform-player@latest/dist/waveform-player.css">
+
+  <script src="https://unpkg.com/@arraypress/waveform-player@latest/dist/waveform-player.js"></script>
+</head>
+
+<body>
+
+  <button
+    title="Toggle Dark Mode?"
+    onclick="darkMode()"
+    style="
+      background: none;
+      color: #333333;
+      border: none;
+      padding: 0;
+      height: 5px;
+      cursor: pointer;">
+    <img src="darkMode.png" width="20" alt="Dark mode">
+  </button>
+
+  <div>
+    <button
+      title="Play/Pause Audio?"
+      onclick="WaveformPlayer.getInstance('Player').togglePlay()"
+      style="
+        margin-top: 20px;
+        background: none;
+        color: #333333;
+        border: none;
+        padding: 0;
+        height: 5px;
+        cursor: pointer;">
+      <img src="note.png" width="20" alt="Music">
+    </button>
+  </div>
+
+  <audio id="giggle" src="giggle.mp3"></audio>
+  <audio id="click" src="click.mp3"></audio>
+  <audio id="talk" src="talk.mp3" preload="auto"></audio>
+
+  <div class="header">
+    <h2>Diary</h2>
+    <div class="subheading">relax, read something... or don't.</div>
+  </div>
+
+  <div
+    data-waveform-player
+    id="Player"
+    data-url="./jazz.mp3"
+    data-waveform-style="blocks"
+    data-show-controls="false"
+    data-waveform-color="rgba(10, 10, 10, 0)"
+    data-progress-color="#333333"
+    data-show-info="false">
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+
+      <div id="blogPage" class="blog-page">
+
+        <div class="card post active" data-tags="uni exams 2026">
+          <h2>Approaching exams...</h2>
+          <h5>Last modified: May 1, 2026</h5>
+
+          <div class="tags">
+            <span>2026</span>
+            <span>uni</span>
+            <span>exams</span>
+          </div>
+
+          <iframe
+            src="./posts/post1.html"
+            scrolling="no"
+            style="border: none; width: 100%; height: 250px;">
+          </iframe>
+        </div>
+
+        <div class="card post" data-tags="vegan food 2026">
+          <h2>going vegan! ...sort of.</h2>
+          <h5>Last modified: Mar 2, 2026</h5>
+
+          <div class="tags">
+            <span>2026</span>
+            <span>vegan</span>
+            <span>food</span>
+          </div>
+
+          <p>Some text..</p>
+          <p>
+            Sunt in culpa qui officia deserunt mollit anim id est laborum
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua.
+          </p>
+        </div>
+
+        <div class="card post" data-tags="memories personal 2026">
+          <h2>old memories...</h2>
+          <h5>Last modified: Jan 12, 2026</h5>
+
+          <div class="tags">
+            <span>2026</span>
+            <span>memories</span>
+            <span>personal</span>
+          </div>
+
+          <p>This is another diary post.</p>
+        </div>
+
+        <div class="card post private locked" data-tags="personal 2026">
+          <h2>private thoughts...</h2>
+          <h5>Last modified: May 5, 2026</h5>
+
+          <div class="tags">
+            <span>2026</span>
+            <span>personal</span>
+          </div>
+
+          <div class="privateWrap">
+            <div class="privateContent">
+              <p>This is a private entry.</p>
+              <p>mee meow</p>
+            </div>
+
+            <div class="lockLayer">
+              <div>
+                <p>Locked post</p>
+                <div class="keyhole" title="Looks like a keyhole..."></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pagination">
+        <button id="prevPost">← previous</button>
+        <span id="pageNumber">1 / 4</span>
+        <button id="nextPost">next →</button>
+      </div>
+
+    </div>
+
+    <div class="rightcolumn">
+
+      <div class="profile">
+
+        <div id="part" class="particle">
+          Hey! It's ticklish!
+        </div>
+
+        <div class="dark-img">
+          <button title="Pet Mira?" id="btnPet" class="btnPet">
+            <img id="petMiraImg" src="mira1.png" style="width: 200px;" alt="Mira">
+          </button>
+        </div>
+
+        <p id="miraQuote">Do you need anything?</p>
+      </div>
+
+      <div class="card tagBox">
+      <h3>Tags</h3>
+
+      <div class="tagList" id="tagList">
+      <button class="tagBtn active" data-tag="all">all</button>
+      </div>
+        </div>
+        
+        <div class="card asmrBox">
+  <h3>ambient sound</h3>
+
+  <div class="asmrControls" id="asmrControls">
+    <button type="button" class="asmrBtn" data-sound="rainfall">
+  <span class="asmrFill"></span>
+  <span class="asmrName">rainfall</span>
+  <span class="asmrPercent">off</span>
+</button>
+
+<button type="button" class="asmrBtn" data-sound="fireplace">
+  <span class="asmrFill"></span>
+  <span class="asmrName">fireplace</span>
+  <span class="asmrPercent">off</span>
+</button>
+
+<button type="button" class="asmrBtn" data-sound="cafe">
+  <span class="asmrFill"></span>
+  <span class="asmrName">cafe</span>
+  <span class="asmrPercent">off</span>
+</button>
+  </div>
+</div>
+
+      <div class="card">
+        <h3>Pinned posts!</h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="keyWrap" class="keyWrap">
+  <img
+    id="secretKey"
+    class="secretKey"
+    src="./key.png"
+    alt="Key"
+  >
+</div>
+
+  <div class="footer">
+     <button onclick="topFunction()" id="btnTop" title="Go to top">back to top</button>
+  </div>
+
+ <script>
+  function darkMode() {
+    const goingDark = !document.body.classList.contains("dark");
+
+    document.documentElement.classList.remove("flash", "to-dark", "to-light");
+    void document.documentElement.offsetWidth;
+
+    document.documentElement.classList.add("flash", goingDark ? "to-dark" : "to-light");
+
+    setTimeout(function () {
+      document.body.classList.toggle("dark");
+    }, 140);
+
+    setTimeout(function () {
+      document.documentElement.classList.remove("flash", "to-dark", "to-light");
+    }, 650);
+  }
+
+  let mybutton = document.getElementById("btnTop");
+
+    window.onscroll = function() {toTop()};
+
+    function toTop() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 
+
+  const sounds = {
+    rainfall: "./rain.mp3",
+    fireplace: "./fire.mp3",
+    cafe: "./cafe.mp3"
+  };
+
+const asmrPlayers = {};
+
+Object.keys(sounds).forEach(function (sound) {
+  const audio = new Audio(sounds[sound]);
+
+  audio.loop = true;
+  audio.volume = 1;
+
+  asmrPlayers[sound] = {
+    audio: audio,
+    volume: 1,
+    playing: false
+  };
+});
+
+document.querySelectorAll(".asmrBtn").forEach(function (button) {
+  let dragging = false;
+  let moved = false;
+  let startX = 0;
+
+  button.addEventListener("pointerdown", function (event) {
+    dragging = true;
+    moved = false;
+    startX = event.clientX;
+
+    button.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+
+  button.addEventListener("pointermove", function (event) {
+    if (!dragging) {
+      return;
+    }
+
+    if (Math.abs(event.clientX - startX) > 4) {
+  moved = true;
+  setAsmrVolume(button, event);
+}
+  });
+
+  button.addEventListener("pointerup", function (event) {
+    if (!dragging) {
+      return;
+    }
+
+    dragging = false;
+
+    if (!moved) {
+      toggleAsmr(button);
+    }
+
+    event.preventDefault();
+  });
+});
+
+function toggleAsmr(button) {
+  const sound = button.dataset.sound;
+  const player = asmrPlayers[sound];
+
+  if (player.playing) {
+    player.audio.pause();
+    player.audio.currentTime = 0;
+    player.playing = false;
+  } else {
+    player.volume = 1;
+    player.audio.volume = 1;
+    player.audio.play();
+
+    player.playing = true;
+  }
+
+  updateAsmrButton(button);
+}
+
+function setAsmrVolume(button, event) {
+  const sound = button.dataset.sound;
+  const player = asmrPlayers[sound];
+  const rect = button.getBoundingClientRect();
+
+  let volume = (event.clientX - rect.left) / rect.width;
+  volume = Math.max(0, Math.min(1, volume));
+
+  player.volume = volume;
+  player.audio.volume = volume;
+
+  if (!player.playing) {
+    player.audio.play();
+    player.playing = true;
+  }
+
+  updateAsmrButton(button);
+}
+
+function updateAsmrButton(button) {
+  const sound = button.dataset.sound;
+  const player = asmrPlayers[sound];
+
+  const fill = button.querySelector(".asmrFill");
+  const percent = button.querySelector(".asmrPercent");
+
+  button.classList.toggle("playing", player.playing);
+
+  if (player.playing) {
+    fill.style.width = `${player.volume * 100}%`;
+    percent.textContent = `${Math.round(player.volume * 100)}%`;
+  } else {
+    fill.style.width = "0%";
+    percent.textContent = "off";
+  }
+}
+
+  const miraButton = document.getElementById("btnPet");
+  const miraImg = document.getElementById("petMiraImg");
+  const particleText = document.getElementById("part");
+  const miraQuote = document.getElementById("miraQuote");
+
+  const closedMira = "./mira2.png";
+  const openMira = "./mira1.png";
+  const surprisedMira = "./mira4.png";
+
+  let petTimer;
+  let talkingTimer;
+  let quoteTimer;
+  let talkSoundTimer;
+  let typingTimer;
+  let stopTalkTimer;
+  let miraBusyTimer;
+
+  let miraBusy = false;
+
+  const petMessages = [
+    "Hey! It's ticklish!",
+    "Hehe!",
+    "That feels nice!",
+    "Again! Again!"
+  ];
+
+  const miraQuotes = [
+    "Do you need anything?",
+    "I hope exams go well...",
+    "Don't forget to drink water!",
+    "You should take a little break.",
+    "I was waiting for you!",
+    "Today's diary entry feels important.",
+    "Free Palestine!",
+    "I like the music on this page.",
+    "Trans rights are human rights.",
+    "Something feels nostalgic..."
+  ];
+
+  miraButton.addEventListener("click", function () {
+    clearTimeout(petTimer);
+    clearTimeout(miraBusyTimer);
+    clearTimeout(quoteTimer);
+    stopTalking();
+
+    miraBusy = true;
+
+    const randomMessage = petMessages[Math.floor(Math.random() * petMessages.length)];
+
+    miraImg.src = "./mira3.png";
+    particleText.textContent = randomMessage;
+    particleText.classList.add("show");
+
+    petTimer = setTimeout(function () {
+      miraImg.src = closedMira;
+      particleText.classList.remove("show");
+
+      miraBusy = false;
+      setNextQuote();
+    }, 1200);
+
+    document.getElementById("giggle").play();
+    document.getElementById("click").play();
+  });
+
+  function typeQuote(text) {
+    clearInterval(typingTimer);
+
+    miraQuote.textContent = "";
+    miraQuote.classList.add("typing");
+
+    let i = 0;
+
+    typingTimer = setInterval(function () {
+      miraQuote.textContent += text.charAt(i);
+      i++;
+
+      if (i >= text.length) {
+        clearInterval(typingTimer);
+        miraQuote.classList.remove("typing");
+      }
+    }, 55);
+  }
+
+  function makeMiraSay(text, busyTime, imageSrc, keepSound) {
+    clearTimeout(miraBusyTimer);
+    clearTimeout(quoteTimer);
+
+    miraBusy = true;
+
+    typeQuote(text);
+
+    if (imageSrc) {
+      stopTalking();
+      miraImg.src = imageSrc;
+
+      if (keepSound) {
+        talkSoundTimer = setInterval(function () {
+          const talkSound = document.getElementById("talk");
+
+          talkSound.currentTime = 0;
+          talkSound.volume = 0.3;
+          talkSound.play();
+        }, 220);
+      }
+    } else {
+      talkForQuote(text);
+    }
+
+    miraBusyTimer = setTimeout(function () {
+      miraBusy = false;
+      stopTalking();
+      miraImg.src = closedMira;
+      setNextQuote();
+    }, busyTime || Math.max(1400, text.length * 80));
+  }
+
+  function showRandomQuote() {
+    if (miraBusy) {
+      setNextQuote();
+      return;
+    }
+
+    const randomQuote = miraQuotes[Math.floor(Math.random() * miraQuotes.length)];
+    makeMiraSay(randomQuote);
+  }
+
+  function talkForQuote(text) {
+    clearInterval(talkingTimer);
+    clearInterval(talkSoundTimer);
+    clearTimeout(stopTalkTimer);
+
+    let mouthOpen = false;
+
+    talkingTimer = setInterval(function () {
+      mouthOpen = !mouthOpen;
+      miraImg.src = mouthOpen ? openMira : closedMira;
+    }, 160);
+
+    talkSoundTimer = setInterval(function () {
+      const talkSound = document.getElementById("talk");
+
+      talkSound.currentTime = 0;
+      talkSound.volume = 0.3;
+      talkSound.play();
+    }, 220);
+
+    const talkingTime = Math.max(1200, text.length * 80);
+
+    stopTalkTimer = setTimeout(function () {
+      stopTalking();
+    }, talkingTime);
+  }
+
+  function stopTalking() {
+    clearInterval(talkingTimer);
+    clearInterval(talkSoundTimer);
+    clearTimeout(stopTalkTimer);
+
+    miraImg.src = closedMira;
+  }
+
+  function setNextQuote() {
+    clearTimeout(quoteTimer);
+
+    const randomDelay = Math.floor(Math.random() * 7000) + 10000;
+
+    quoteTimer = setTimeout(function () {
+      showRandomQuote();
+    }, randomDelay);
+  }
+
+  const posts = Array.from(document.querySelectorAll(".post"));
+  const blogPage = document.getElementById("blogPage");
+  const pageNumber = document.getElementById("pageNumber");
+  const prevPost = document.getElementById("prevPost");
+  const nextPost = document.getElementById("nextPost");
+  const tagList = document.getElementById("tagList");
+  const keyWrap = document.getElementById("keyWrap");
+  const secretKey = document.getElementById("secretKey");
+
+  let currentPost = 0;
+  let visiblePosts = posts;
+
+  let keyVisible = false;
+  let keyDragging = false;
+  let keyOffsetX = 0;
+  let keyOffsetY = 0;
+
+  let typedSecret = "";
+  let secretBound = false;
+
+  function getPostTags(post) {
+    return post.dataset.tags
+      ? post.dataset.tags.split(/[,\s]+/).filter(Boolean)
+      : [];
+  }
+
+  function makeTags() {
+    const tags = [];
+
+    tagList.innerHTML = '<button class="tagBtn active" data-tag="all">all</button>';
+
+    posts.forEach(function (post) {
+      const postTags = getPostTags(post);
+
+      postTags.forEach(function (tag) {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
+        }
+      });
+    });
+
+    tags.sort();
+
+    tags.forEach(function (tag) {
+      const button = document.createElement("button");
+
+      button.className = "tagBtn";
+      button.dataset.tag = tag;
+      button.textContent = tag;
+
+      tagList.appendChild(button);
+    });
+  }
+
+  function bindSecretWord() {
+    if (secretBound) {
+      return;
+    }
+
+    secretBound = true;
+
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.target.tagName === "INPUT" ||
+        event.target.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
+
+      typedSecret += event.key.toLowerCase();
+      typedSecret = typedSecret.slice(-4);
+
+      if (typedSecret === "1008") {
+        dropKeyFromTop();
+        typedSecret = "";
+      }
+    });
+  }
+
+  function dropKeyFromTop() {
+    if (!keyWrap || keyVisible) {
+      return;
+    }
+
+    const privatePost = document.querySelector(".post.active.private.locked");
+
+    if (!privatePost) {
+      makeMiraSay(
+        "Hmm... I heard something, but there's nowhere for it to go.",
+        3600
+      );
+      return;
+    }
+
+    const postRect = privatePost.getBoundingClientRect();
+
+    const finalLeft = window.scrollX + postRect.left + postRect.width / 2 - 21;
+    const finalTop = window.scrollY + postRect.top + 18;
+
+    keyWrap.style.left = finalLeft + "px";
+    keyWrap.style.top = finalTop + "px";
+
+    keyWrap.classList.remove("dragging", "falling");
+    void keyWrap.offsetWidth;
+
+    keyWrap.classList.add("show", "falling");
+    privatePost.classList.add("key-hit");
+
+    keyVisible = true;
+
+    setTimeout(function () {
+      keyWrap.classList.remove("falling");
+      privatePost.classList.remove("key-hit");
+    }, 980);
+
+    makeMiraSay(
+      "Oh, a key! I wonder where it would fit...",
+      3800,
+      surprisedMira,
+      true
+    );
+  }
+
+  function updateButtons() {
+    prevPost.disabled = currentPost === 0;
+    nextPost.disabled = currentPost === visiblePosts.length - 1 || visiblePosts.length === 0;
+
+    pageNumber.textContent = visiblePosts.length
+      ? currentPost + 1 + " / " + visiblePosts.length
+      : "0 / 0";
+  }
+
+  function showOnlyCurrentPost() {
+    posts.forEach(function (post) {
+      post.classList.remove("active");
+    });
+
+    if (visiblePosts.length > 0) {
+      visiblePosts[currentPost].classList.add("active");
+    }
+
+    updateButtons();
+    clearKeyholeHighlight();
+  }
+
+  function showPost(index) {
+    if (
+      index === currentPost ||
+      blogPage.classList.contains("flash") ||
+      visiblePosts.length === 0
+    ) {
+      return;
+    }
+
+    blogPage.classList.remove("flash", "done");
+    void blogPage.offsetWidth;
+    blogPage.classList.add("flash");
+
+    setTimeout(function () {
+      currentPost = index;
+      showOnlyCurrentPost();
+    }, 520);
+
+    setTimeout(function () {
+      blogPage.classList.remove("flash");
+      blogPage.classList.add("done");
+    }, 700);
+
+    setTimeout(function () {
+      blogPage.classList.remove("done");
+    }, 940);
+  }
+
+  function filterPosts(tag) {
+    visiblePosts = posts.filter(function (post) {
+      const tags = getPostTags(post);
+      return tag === "all" || tags.includes(tag);
+    });
+
+    currentPost = 0;
+
+    document.querySelectorAll(".tagBtn").forEach(function (button) {
+      button.classList.toggle("active", button.dataset.tag === tag);
+    });
+
+    blogPage.classList.remove("flash", "done");
+    void blogPage.offsetWidth;
+    blogPage.classList.add("flash");
+
+    setTimeout(function () {
+      showOnlyCurrentPost();
+    }, 360);
+
+    setTimeout(function () {
+      blogPage.classList.remove("flash");
+      blogPage.classList.add("done");
+    }, 700);
+
+    setTimeout(function () {
+      blogPage.classList.remove("done");
+    }, 940);
+  }
+
+  function getPoint(event) {
+    if (event.touches && event.touches.length > 0) {
+      return {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY
+      };
+    }
+
+    return {
+      x: event.clientX,
+      y: event.clientY
+    };
+  }
+
+  function startKeyDrag(event) {
+    if (!keyWrap || !keyVisible) {
+      return;
+    }
+
+    const point = getPoint(event);
+    const rect = keyWrap.getBoundingClientRect();
+
+    keyDragging = true;
+    keyOffsetX = point.x - rect.left;
+    keyOffsetY = point.y - rect.top;
+
+    keyWrap.classList.remove("falling");
+    keyWrap.classList.add("dragging");
+
+    event.preventDefault();
+  }
+
+  function moveKey(event) {
+    if (!keyDragging || !keyWrap) {
+      return;
+    }
+
+    const point = getPoint(event);
+
+    keyWrap.style.left = window.scrollX + point.x - keyOffsetX + "px";
+    keyWrap.style.top = window.scrollY + point.y - keyOffsetY + "px";
+
+    highlightKeyhole();
+
+    event.preventDefault();
+  }
+
+  function endKeyDrag() {
+    if (!keyDragging || !keyWrap) {
+      return;
+    }
+
+    keyDragging = false;
+    keyWrap.classList.remove("dragging");
+
+    const hole = getTouchedKeyhole();
+
+    clearKeyholeHighlight();
+
+    if (hole) {
+      const holeRect = hole.getBoundingClientRect();
+
+      keyWrap.style.left =
+        window.scrollX + holeRect.left + holeRect.width / 2 - keyWrap.offsetWidth / 2 + "px";
+
+      keyWrap.style.top =
+        window.scrollY + holeRect.top + holeRect.height / 2 - keyWrap.offsetHeight / 2 + "px";
+
+      unlockPost(hole);
+    }
+  }
+
+  function getTouchedKeyhole() {
+    if (!keyWrap) {
+      return null;
+    }
+
+    const keyRect = keyWrap.getBoundingClientRect();
+    const keyCenterX = keyRect.left + keyRect.width / 2;
+    const keyCenterY = keyRect.top + keyRect.height / 2;
+
+    let touchedHole = null;
+
+    document.querySelectorAll(".post.active .keyhole").forEach(function (hole) {
+      const holeRect = hole.getBoundingClientRect();
+
+      const inside =
+        keyCenterX >= holeRect.left - 14 &&
+        keyCenterX <= holeRect.right + 14 &&
+        keyCenterY >= holeRect.top - 14 &&
+        keyCenterY <= holeRect.bottom + 14;
+
+      if (inside) {
+        touchedHole = hole;
+      }
+    });
+
+    return touchedHole;
+  }
+
+  function highlightKeyhole() {
+    const touchedHole = getTouchedKeyhole();
+
+    document.querySelectorAll(".keyhole").forEach(function (hole) {
+      hole.classList.toggle("ready", hole === touchedHole);
+    });
+  }
+
+  function clearKeyholeHighlight() {
+    document.querySelectorAll(".keyhole").forEach(function (hole) {
+      hole.classList.remove("ready");
+    });
+  }
+
+  function unlockPost(hole) {
+    const post = hole.closest(".private");
+
+    if (!post) {
+      return;
+    }
+
+    post.classList.add("unlocking");
+
+    setTimeout(function () {
+  post.classList.remove("locked");
+  post.classList.remove("unlocking");
+
+  makeMiraSay("It opened...!", 2000, surprisedMira, true);
+
+  if (keyWrap) {
+    keyWrap.classList.remove("show", "falling", "dragging");
+    keyVisible = false;
+  }
+}, 420);
+  }
+
+  if (keyWrap) {
+    keyWrap.addEventListener("mousedown", startKeyDrag);
+    keyWrap.addEventListener("touchstart", startKeyDrag, { passive: false });
+
+    window.addEventListener("mousemove", moveKey);
+    window.addEventListener("touchmove", moveKey, { passive: false });
+
+    window.addEventListener("mouseup", endKeyDrag);
+    window.addEventListener("touchend", endKeyDrag);
+  }
+
+  prevPost.addEventListener("click", function () {
+    if (currentPost > 0) {
+      showPost(currentPost - 1);
+    }
+  });
+
+  nextPost.addEventListener("click", function () {
+    if (currentPost < visiblePosts.length - 1) {
+      showPost(currentPost + 1);
+    }
+  });
+
+  if (tagList) {
+    makeTags();
+    bindSecretWord();
+
+    tagList.addEventListener("click", function (event) {
+      if (
+        event.target.classList.contains("tagBtn") &&
+        event.target.dataset.tag
+      ) {
+        filterPosts(event.target.dataset.tag);
+      }
+    });
+  }
+
+  window.addEventListener("load", function () {
+    const player = WaveformPlayer.getInstance("Player");
+
+    if (player && player.audio) {
+      player.audio.loop = true;
+    }
+
+    showOnlyCurrentPost();
+    setNextQuote();
+  });
+</script>
+
+</body>
+</html>
