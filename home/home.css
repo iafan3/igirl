@@ -269,7 +269,7 @@ html.skipDisc .popupDisc {
   --s: 1;
   --z: 5;
 
-  --size: clamp(24px, 3.1vw, 52px);
+  --size: clamp(26px, 3.4vw, 55px);
   --activeSize: clamp(38px, 4.9vw, 82px);
   --gap: 8px;
 
