@@ -320,7 +320,7 @@ html.skipDisc .popupDisc {
 
 .textMenu {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 
   display: inline-block;
 

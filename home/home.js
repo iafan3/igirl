@@ -531,7 +531,8 @@ function resumeHome() {
   }
 
   updateMenu(false);
-  playBgVid();
+  playIntroVid();
+  switchToLoop();
 
   if (audBg) {
     
