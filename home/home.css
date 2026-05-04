@@ -583,7 +583,7 @@ html.skipDisc .popupDisc {
   clip-path: polygon(
     0% 50%,
     100% 0%,
-    75% 100%
+    75% 75%
   );
 
   transform-origin: left center;
@@ -597,20 +597,24 @@ html.skipDisc .popupDisc {
 
 /* RED OVERLAY */
 
-.itemMenu.active::after {
-  content: attr(textCopy);
+.itemMenu.active .textMenu::before {
+  content: attr(textcopy);
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 4;
 
   color: var(--activeRed);
+  text-shadow: none;
   pointer-events: none;
 
-  clip-path: polygon(
-    0 var(--shardMidY),
-    var(--shardW) var(--shardY),
-    var(--shardW) var(--shardBottomY)
-  );
+  font-family: menuFont, Impact, Haettenschweiler, "Arial Black", sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+
+  clip-path: var(--redClip);
 }
 
 .itemMenu:hover {

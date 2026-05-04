@@ -326,21 +326,28 @@ function playSound(sound) {
 function sizeActiveShard(item) {
   if (!item) return;
 
+  const span = item.querySelector(".textMenu") || item;
+
   const textWidth  = item.offsetWidth;
   const textHeight = item.offsetHeight;
+  const spanW      = span.offsetWidth;
 
-  const shardW = textWidth  * 1.2;
-  const shardH = textHeight * 1.2;
-  const shardY = textHeight * -0.1;
-
-  const shardMidY    = shardY + shardH * 0.5;
+  const shardW       = textWidth  * 1.4;
+  const shardH       = textHeight * 1.32;
+  const shardY       = textHeight * 0;
+  const shardMidY    = shardY + shardH * -1.1;
   const shardBottomY = shardY + shardH;
+
+  const rightEdge   = (shardW / spanW * 100).toFixed(1);
+  const bottomRight = (shardW * 1.4 / spanW * 120).toFixed(1);
 
   item.style.setProperty("--shardW",       `${shardW}px`);
   item.style.setProperty("--shardH",       `${shardH}px`);
   item.style.setProperty("--shardY",       `${shardY}px`);
   item.style.setProperty("--shardMidY",    `${shardMidY}px`);
   item.style.setProperty("--shardBottomY", `${shardBottomY}px`);
+  item.style.setProperty("--redClip",
+    `polygon(0% 69%, ${rightEdge}% -3%, ${bottomRight}% 131%)`);
 }
 
 function updateMenu(useSound = false) {

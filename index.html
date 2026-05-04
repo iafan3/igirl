@@ -9,10 +9,10 @@
   <link
     id="siteIcon"
     rel="icon"
-    href="home/assets/icondisclaimer.png"
+    href="/home/assets/icondisclaimer.png"
   />
 
-  <link rel="stylesheet" href="home/home.css?v=13" />
+  <link rel="stylesheet" href="/backup/home.css" />
 
   <script>
     try {
@@ -23,7 +23,7 @@
         const icon = document.getElementById("siteIcon");
 
         if (icon) {
-          icon.href = "home/assets/icon.png";
+          icon.href = "/home/assets/icon.png";
         }
       }
     } catch (error) {}
@@ -41,9 +41,9 @@
       loop
       playsinline
       preload="auto"
-      poster="home/assets/bgfallback.png"
+      poster="/home/assets/bgfallback.png"
     >
-      <source src="home/assets/loop.mp4" type="video/mp4" />
+      <source src="/home/assets/loop.mp4" type="video/mp4" />
     </video>
 
     <video
@@ -53,12 +53,12 @@
   playsinline
   preload="auto"
 >
-  <source src="home/assets/intro.mp4" type="video/mp4" />
+  <source src="/home/assets/intro.mp4" type="video/mp4" />
     </video>
 
-    <audio id="audMove" src="home/assets/ui.wav" preload="auto"></audio>
-    <audio id="audConfirm" src="home/assets/confirm.wav" preload="auto"></audio>
-    <audio id="audBg" src="home/assets/bgmusic.mp3" autoplay muted loop preload="auto"></audio>
+    <audio id="audMove" src="/home/assets/menu-move.mp3" preload="auto"></audio>
+    <audio id="audConfirm" src="/home/assets/menu-confirm.mp3" preload="auto"></audio>
+    <audio id="audBg" src="/home/assets/bgmusic.mp3" autoplay muted loop preload="auto"></audio>
 
     <div class="numMenu" id="numMenu">01</div>
 
@@ -157,6 +157,6 @@
     </defs>
   </svg>
 
-  <script src="home/home.js?v=13"></script>
+  <script src="./home.js"></script>
 </body>
 </html>
