@@ -210,6 +210,7 @@ html.skipDisc .popupDisc {
 
   pointer-events: none;
   background: #ffffff00;
+  opacity: 0;
 }
 
 .vidIntro {

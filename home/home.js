@@ -552,8 +552,8 @@ function resumeHome() {
   }
 
   if (vidBg) {
-  vidBg.style.transition = "";
-  vidBg.style.opacity    = "1";
+    vidBg.style.transition = "none";
+    vidBg.style.opacity    = "1";
   }
 }
 
