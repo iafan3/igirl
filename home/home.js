@@ -274,9 +274,9 @@ function playIntroVid() {
   vidIntro.currentTime = 0;
 
   vidIntro.classList.add("playing");
-  vidIntro.play().catch(() => {}); 
-
-  setTimeout(switchToLoop, 6000);
+  vidIntro.addEventListener("ended", switchToLoop, { once: true });
+  vidIntro.addEventListener("error", switchToLoop, { once: true });
+  vidIntro.play().catch(() => switchToLoop());
 }
 
 function switchToLoop() {
@@ -294,7 +294,6 @@ function switchToLoop() {
   playBgVid();
   guardBgVid(vidBg);
 }
-
 
 function enterSite() {
   if (hasEntered) return;
@@ -316,14 +315,12 @@ function enterSite() {
   startIntro();
 }
 
-
 function playSound(sound) {
   if (!sound || !hasEntered || isPaused) return;
 
   sound.currentTime = 0;
   sound.play().catch(() => {});
 }
-
 
 function sizeActiveShard(item) {
   if (!item) return;
@@ -496,7 +493,7 @@ function resumeSite(event) {
   }
 
   if (audBg) {
-    // Respect ratio gate when resuming
+    
     if (isRatioOk) {
       audBg.muted  = false;
       audBg.volume = 0;
@@ -537,7 +534,7 @@ function resumeHome() {
   playBgVid();
 
   if (audBg) {
-    // Respect ratio gate when returning home
+    
     if (isRatioOk) {
       audBg.volume = 0;
 
