@@ -210,7 +210,6 @@ html.skipDisc .popupDisc {
 
   pointer-events: none;
   background: #ffffff00;
-  opacity: 0;
 }
 
 .vidIntro {
@@ -231,8 +230,14 @@ html.skipDisc .popupDisc {
   animation: none;
   background: #000; 
 
-  opacity: 0;
+}
 
+.vidIntro.playing {
+  opacity: 1;
+}
+
+.vidIntro.done {
+  opacity: 0;
 }
 
 
