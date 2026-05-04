@@ -50,7 +50,7 @@ if (!overlayRatio) {
 const ratioInfo = document.getElementById("ratioInfo");
 
 const TARGET_RATIO     = 16 / 9;
-const RATIO_TOLERANCE  = 0.1;  // ±2 %
+const RATIO_TOLERANCE  = 0.1;  
 
 let isRatioOk = true; 
 
@@ -165,7 +165,6 @@ function fadeMusicIn(duration = MUSIC_FADE_MS) {
   const stepTime = duration / steps;
   let step       = 0;
 
-  // Only unmute / fade if the ratio is currently correct
   if (!isRatioOk) return;
 
   audBg.muted  = false;
