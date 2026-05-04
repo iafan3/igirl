@@ -201,7 +201,7 @@ html.skipDisc .popupDisc {
   width: 100%;
   height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 
   filter: saturate(1.35) contrast(1.15) brightness(1.05);
