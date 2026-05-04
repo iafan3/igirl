@@ -128,7 +128,7 @@ menuItems.forEach(item => {
 
   const span = document.createElement("span");
   span.className = "textMenu";
-  span.setAttribute("textcopy", text);
+  span.setAttribute("textCopy", text);
   span.textContent = text;
 
   item.appendChild(span);
