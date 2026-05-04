@@ -661,6 +661,7 @@ if (hasEntered) {
   startIntro();
   startMusic(false);
   queueMusicStart();
+  playIntroVid();
 
  } else {
   setPageIcon(false);
