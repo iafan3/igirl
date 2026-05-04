@@ -335,8 +335,6 @@ function playSound(sound) {
   sound.play().catch(() => {});
 }
 
-let bleedX = 10;
-
 function sizeActiveShard(item) {
   if (!item) return;
  
