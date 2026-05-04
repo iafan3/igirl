@@ -595,33 +595,32 @@ html.skipDisc .popupDisc {
 
 /* RED OVERLAY */
 
-.itemMenu.active .textMenu::before {
-  content: attr(textcopy);
+.menu-item.active::after {
+  content: attr(data-text);
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 3;
 
-  color: var(--activeRed);
+  color: var(--active-red);
   text-shadow: none;
-
   pointer-events: none;
 
   clip-path: polygon(
-    0 var(--shardMidY),
-    var(--shardW) var(--shardY),
-    var(--shardW) var(--shardBottomY)
+    0 var(--shard-mid-y),
+    var(--shard-w) var(--shard-y),
+    var(--shard-w) var(--shard-bottom-y)
   );
 }
 
-.itemMenu:hover {
+.menu-item:hover {
   z-index: 20;
 }
 
-.itemMenu:focus {
+.menu-item:focus {
   outline: none;
 }
 
-.pageMenu.menuLoaded .itemMenu.bump {
+.menu-page.menu-loaded .menu-item.bump {
   --x: -60px;
   --s: 1.06;
 }
