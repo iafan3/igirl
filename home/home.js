@@ -280,15 +280,20 @@ function playIntroVid() {
 }
 
 function switchToLoop() {
-  if (introVideoDone) return; 
+  if (introVideoDone) return;
   introVideoDone = true;
 
   if (vidIntro) {
     vidIntro.classList.remove("playing");
-    vidIntro.classList.add("done"); 
+    vidIntro.classList.add("done");
     setTimeout(() => {
       try { vidIntro.pause(); vidIntro.removeAttribute("src"); vidIntro.load(); } catch (_) {}
     }, 700);
+  }
+
+  if (vidBg) {
+    vidBg.style.transition = "opacity 0.3s ease";
+    vidBg.style.opacity    = "1";
   }
 
   playBgVid();
@@ -544,6 +549,11 @@ function resumeHome() {
     } else {
       audBg.muted = true;
     }
+  }
+
+  if (vidBg) {
+  vidBg.style.transition = "";
+  vidBg.style.opacity    = "1";
   }
 }
 
