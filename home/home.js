@@ -27,7 +27,7 @@ if (!overlayRatio) {
     left:           "0",
     width:          "100%",
     height:         "100%",
-    background:     "#111",
+    background:     "#333333",
     color:          "#fff",
     display:        "none",
     justifyContent: "center",
@@ -50,7 +50,7 @@ if (!overlayRatio) {
 const ratioInfo = document.getElementById("ratioInfo");
 
 const TARGET_RATIO     = 16 / 9;
-const RATIO_TOLERANCE  = 0.1;  
+const RATIO_TOLERANCE  = 0.15;  
 
 let isRatioOk = true; 
 
@@ -673,7 +673,6 @@ if (hasEntered) {
   if (btnEnter) btnEnter.addEventListener("click", enterSite);
 }
 
-// Run initial ratio check after all setup is done
 checkAspectRatio();
 
 
