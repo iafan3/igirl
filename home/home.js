@@ -17,8 +17,6 @@ const btnEnter  = document.getElementById("btnEnter");
 const screenPause = document.getElementById("screenPause");
 const siteIcon    = document.getElementById("siteIcon");
 
-// scr ratio overlay
-
 let overlayRatio = document.getElementById("overlayRatio");
 if (!overlayRatio) {
   overlayRatio = document.createElement("div");
@@ -29,7 +27,7 @@ if (!overlayRatio) {
     left:           "0",
     width:          "100%",
     height:         "100%",
-    background:     "#333333",
+    background:     "#111",
     color:          "#fff",
     display:        "none",
     justifyContent: "center",
@@ -52,7 +50,7 @@ if (!overlayRatio) {
 const ratioInfo = document.getElementById("ratioInfo");
 
 const TARGET_RATIO     = 16 / 9;
-const RATIO_TOLERANCE  = 0.15;  
+const RATIO_TOLERANCE  = 0.5;  
 
 let isRatioOk = true; 
 
@@ -102,7 +100,7 @@ const SITE_TITLE = "Home";
 const DISC_ICON = "home/assets/icondisclaimer.png";
 const SITE_ICON = "home/assets/icon.png";
 
-const MUSIC_VOL     = 0.2;
+const MUSIC_VOL     = 0.3;
 const MUSIC_FADE_MS = 1400;
 
 const INTRO_MIN_MS      = 6000;  
@@ -264,11 +262,9 @@ function playBgVid() {
 
 function playIntroVid() {
   if (!vidIntro || introVideoDone) {
-    console.log("playIntroVid: skipped, going straight to switchToLoop");
     switchToLoop();
     return;
   }
-  console.log("playIntroVid: starting intro");
 
   vidIntro.muted       = true;
   vidIntro.loop        = false;
@@ -276,37 +272,27 @@ function playIntroVid() {
   vidIntro.currentTime = 0;
 
   vidIntro.classList.add("playing");
-  vidIntro.addEventListener("ended", switchToLoop, { once: true });
-  vidIntro.addEventListener("error", switchToLoop, { once: true });
-  vidIntro.play().catch(() => switchToLoop());
+  vidIntro.play().catch(() => {}); 
+
+  setTimeout(switchToLoop, 6000);
 }
 
 function switchToLoop() {
-  console.log("switchToLoop called, introVideoDone was:", introVideoDone);
-  console.log("switchToLoop called");
-  console.log("vidBg readyState:", vidBg?.readyState);
-  console.log("vidBg paused:", vidBg?.paused);
-  console.log("vidBg currentTime:", vidBg?.currentTime);
-
-  if (introVideoDone) return;
+  if (introVideoDone) return; 
   introVideoDone = true;
 
   if (vidIntro) {
     vidIntro.classList.remove("playing");
-    vidIntro.classList.add("done");
+    vidIntro.classList.add("done"); 
     setTimeout(() => {
       try { vidIntro.pause(); vidIntro.removeAttribute("src"); vidIntro.load(); } catch (_) {}
     }, 700);
   }
 
-  if (vidBg) {
-    vidBg.play()
-      .then(() => { vidBg.classList.add("ready"); })
-      .catch(() => { vidBg.classList.add("ready"); });
-  }
-
+  playBgVid();
   guardBgVid(vidBg);
 }
+
 
 function enterSite() {
   if (hasEntered) return;
@@ -328,6 +314,7 @@ function enterSite() {
   startIntro();
 }
 
+
 function playSound(sound) {
   if (!sound || !hasEntered || isPaused) return;
 
@@ -335,23 +322,32 @@ function playSound(sound) {
   sound.play().catch(() => {});
 }
 
+
 function sizeActiveShard(item) {
   if (!item) return;
- 
+
   const span = item.querySelector(".textMenu") || item;
- 
-  const textWidth  = span.offsetWidth;
-  const textHeight = span.offsetHeight;
- 
-  const shardW       = textWidth  + bleedX * 2;  // total width
-  const shardH       = textHeight + bleedY * 2;  // total height
-  const shardY       = -bleedY;                  // top edge 
-  const shardMidY    = shardY + shardH * 0.5;    // vertical midpoint
-  const shardBottomY = shardY + shardH;           // bottom edge
- 
+
+  const rect      = span.getBoundingClientRect();
+  const textWidth  = rect.width  || span.offsetWidth;
+  const textHeight = rect.height || span.offsetHeight;
+
+  const bleedX = textWidth  * 0.12;
+  const bleedY = textHeight * 0.12;
+
+  const shardY       = -bleedY;                   // top edge
+  const shardW       = textWidth  + bleedX * 2;   // right edge
+  const shardH       = textHeight + bleedY * 2;   // total height
+  const shardBottomY = shardY + shardH;            // bottom edge
+
+  const shardLeftY = shardY + shardH * 0.7;
+
+  const shardMidY = shardLeftY;
+
   span.style.setProperty("--shardW",       `${shardW}px`);
   span.style.setProperty("--shardH",       `${shardH}px`);
   span.style.setProperty("--shardY",       `${shardY}px`);
+  span.style.setProperty("--shardLeftY",   `${shardLeftY}px`);
   span.style.setProperty("--shardMidY",    `${shardMidY}px`);
   span.style.setProperty("--shardBottomY", `${shardBottomY}px`);
 }
@@ -506,7 +502,7 @@ function resumeSite(event) {
   }
 
   if (audBg) {
-    
+    // Respect ratio gate when resuming
     if (isRatioOk) {
       audBg.muted  = false;
       audBg.volume = 0;
@@ -558,10 +554,6 @@ function resumeHome() {
       audBg.muted = true;
     }
   }
-
-  if (vidBg) {
-  vidBg.classList.add("ready"); 
-}
 }
 
 
@@ -678,7 +670,6 @@ if (hasEntered) {
   startIntro();
   startMusic(false);
   queueMusicStart();
-  playIntroVid();
 
  } else {
   setPageIcon(false);
