@@ -243,6 +243,11 @@ html.skipDisc .popupDisc {
   opacity: 0;
 }
 
+.vidBg.ready {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 /* MAIN MENU */
 
 .menuMain {

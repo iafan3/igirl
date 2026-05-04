@@ -292,11 +292,11 @@ function switchToLoop() {
   }
 
   if (vidBg) {
-    vidBg.style.transition = "opacity 0.3s ease";
-    vidBg.style.opacity    = "1";
+    vidBg.play()
+      .then(() => { vidBg.classList.add("ready"); })
+      .catch(() => { vidBg.classList.add("ready"); });
   }
 
-  playBgVid();
   guardBgVid(vidBg);
 }
 
@@ -552,9 +552,8 @@ function resumeHome() {
   }
 
   if (vidBg) {
-    vidBg.style.transition = "none";
-    vidBg.style.opacity    = "1";
-  }
+  vidBg.classList.add("ready"); 
+}
 }
 
 
