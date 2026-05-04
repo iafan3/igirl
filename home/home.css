@@ -229,7 +229,7 @@ html.skipDisc .popupDisc {
   transform: none;
   animation: none;
   background: #000; 
-
+  opacity: 0;
 }
 
 .vidIntro.playing {
