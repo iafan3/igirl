@@ -264,9 +264,11 @@ function playBgVid() {
 
 function playIntroVid() {
   if (!vidIntro || introVideoDone) {
+    console.log("playIntroVid: skipped, going straight to switchToLoop");
     switchToLoop();
     return;
   }
+  console.log("playIntroVid: starting intro");
 
   vidIntro.muted       = true;
   vidIntro.loop        = false;
@@ -280,6 +282,7 @@ function playIntroVid() {
 }
 
 function switchToLoop() {
+  console.log("switchToLoop called, introVideoDone was:", introVideoDone);
   if (introVideoDone) return;
   introVideoDone = true;
 
