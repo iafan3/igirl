@@ -287,7 +287,7 @@ function switchToLoop() {
   console.log("vidBg readyState:", vidBg?.readyState);
   console.log("vidBg paused:", vidBg?.paused);
   console.log("vidBg currentTime:", vidBg?.currentTime);
-  
+
   if (introVideoDone) return;
   introVideoDone = true;
 
@@ -334,6 +334,8 @@ function playSound(sound) {
   sound.currentTime = 0;
   sound.play().catch(() => {});
 }
+
+let bleedX = 10;
 
 function sizeActiveShard(item) {
   if (!item) return;
