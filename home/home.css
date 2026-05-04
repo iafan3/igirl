@@ -235,18 +235,6 @@ html.skipDisc .popupDisc {
 
 }
 
-.vidIntro.playing {
-  opacity: 1;
-}
-
-.vidIntro.done {
-  opacity: 0;
-}
-
-.vidBg.ready {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
 
 /* MAIN MENU */
 
