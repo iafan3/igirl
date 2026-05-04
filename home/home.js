@@ -332,15 +332,15 @@ function sizeActiveShard(item) {
   const textWidth  = rect.width  || span.offsetWidth;
   const textHeight = rect.height || span.offsetHeight;
 
-  const bleedX = textWidth  * 0.12;
-  const bleedY = textHeight * 0.12;
+  const bleedX = textWidth  * 0.16;
+  const bleedY = textHeight * 0.13;
 
   const shardY       = -bleedY;                   // top edge
   const shardW       = textWidth  + bleedX * 2;   // right edge
   const shardH       = textHeight + bleedY * 2;   // total height
   const shardBottomY = shardY + shardH;            // bottom edge
 
-  const shardLeftY = shardY + shardH * 0.7;
+  const shardLeftY = shardY + shardH * 0.75;
 
   const shardMidY = shardLeftY;
 
