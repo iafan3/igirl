@@ -283,6 +283,11 @@ function playIntroVid() {
 
 function switchToLoop() {
   console.log("switchToLoop called, introVideoDone was:", introVideoDone);
+  console.log("switchToLoop called");
+  console.log("vidBg readyState:", vidBg?.readyState);
+  console.log("vidBg paused:", vidBg?.paused);
+  console.log("vidBg currentTime:", vidBg?.currentTime);
+  
   if (introVideoDone) return;
   introVideoDone = true;
 
