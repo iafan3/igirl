@@ -17,6 +17,8 @@ const btnEnter  = document.getElementById("btnEnter");
 const screenPause = document.getElementById("screenPause");
 const siteIcon    = document.getElementById("siteIcon");
 
+// scr ratio overlay
+
 let overlayRatio = document.getElementById("overlayRatio");
 if (!overlayRatio) {
   overlayRatio = document.createElement("div");
@@ -100,7 +102,7 @@ const SITE_TITLE = "Home";
 const DISC_ICON = "home/assets/icondisclaimer.png";
 const SITE_ICON = "home/assets/icon.png";
 
-const MUSIC_VOL     = 0.3;
+const MUSIC_VOL     = 0.2;
 const MUSIC_FADE_MS = 1400;
 
 const INTRO_MIN_MS      = 6000;  
@@ -325,22 +327,23 @@ function playSound(sound) {
 
 function sizeActiveShard(item) {
   if (!item) return;
-
-  const textWidth  = item.offsetWidth;
-  const textHeight = item.offsetHeight;
-
-  const shardW = textWidth  * 1.2;
-  const shardH = textHeight * 1.2;
-  const shardY = textHeight * -0.1;
-
-  const shardMidY    = shardY + shardH * 0.5;
-  const shardBottomY = shardY + shardH;
-
-  item.style.setProperty("--shardW",       `${shardW}px`);
-  item.style.setProperty("--shardH",       `${shardH}px`);
-  item.style.setProperty("--shardY",       `${shardY}px`);
-  item.style.setProperty("--shardMidY",    `${shardMidY}px`);
-  item.style.setProperty("--shardBottomY", `${shardBottomY}px`);
+ 
+  const span = item.querySelector(".textMenu") || item;
+ 
+  const textWidth  = span.offsetWidth;
+  const textHeight = span.offsetHeight;
+ 
+  const shardW       = textWidth  + bleedX * 2;  // total width
+  const shardH       = textHeight + bleedY * 2;  // total height
+  const shardY       = -bleedY;                  // top edge 
+  const shardMidY    = shardY + shardH * 0.5;    // vertical midpoint
+  const shardBottomY = shardY + shardH;           // bottom edge
+ 
+  span.style.setProperty("--shardW",       `${shardW}px`);
+  span.style.setProperty("--shardH",       `${shardH}px`);
+  span.style.setProperty("--shardY",       `${shardY}px`);
+  span.style.setProperty("--shardMidY",    `${shardMidY}px`);
+  span.style.setProperty("--shardBottomY", `${shardBottomY}px`);
 }
 
 function updateMenu(useSound = false) {

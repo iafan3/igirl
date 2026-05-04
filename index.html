@@ -12,6 +12,8 @@
     href="home/assets/icondisclaimer.png"
   />
 
+  <link rel="stylesheet" href="home/home.css?v=13" />
+
   <script>
     try {
       if (sessionStorage.getItem("discAccepted") === "true") {
@@ -26,8 +28,6 @@
       }
     } catch (error) {}
   </script>
-
-  <link rel="stylesheet" href="home/home.css?v=13" />
 </head>
 
 <body></body>
@@ -54,7 +54,11 @@
   preload="auto"
 >
   <source src="home/assets/intro.mp4" type="video/mp4" />
-</video>
+    </video>
+
+    <audio id="audMove" src="home/assets/menu-move.mp3" preload="auto"></audio>
+    <audio id="audConfirm" src="home/assets/menu-confirm.mp3" preload="auto"></audio>
+    <audio id="audBg" src="home/assets/bgmusic.mp3" autoplay muted loop preload="auto"></audio>
 
     <div class="numMenu" id="numMenu">01</div>
 
@@ -78,9 +82,7 @@
       <span><b>Esc</b> Close</span>
     </section>
 
-    <audio id="audMove" src="home/assets/menu-move.mp3" preload="auto"></audio>
-    <audio id="audConfirm" src="home/assets/menu-confirm.mp3" preload="auto"></audio>
-    <audio id="audBg" src="home/assets/bgmusic.mp3" autoplay muted loop preload="auto"></audio>
+
   </main>
 
   <div class="screenPause" id="screenPause" hidden>
@@ -113,7 +115,7 @@
         Press Enter or click the button below to enter!
       </p>
 
-      <button id="btnEnter" type="button">To the unknown...</button>
+      <button id="btnEnter" type="button">Enter Site</button>
     </div>
   </div>
 

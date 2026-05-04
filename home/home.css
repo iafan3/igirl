@@ -772,32 +772,6 @@ html.skipDisc .popupDisc {
   .pageMenu {
     display: none;
   }
-
-  .screenUnsupported {
-    display: grid;
-  }
-}
-
-/* UNSUPPORTED SCREEN */
-
-.screenUnsupported {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-
-  display: none;
-  place-items: center;
-
-  padding: 28px;
-
-  background: #001e83;
-  color: white;
-
-  font-family: menuFont, menuFontB, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(20px, 4vw, 50px);
-  line-height: 1.1;
-  text-align: center;
-  text-transform: uppercase;
 }
 
 /* ? */
