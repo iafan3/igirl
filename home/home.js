@@ -17,6 +17,82 @@ const btnEnter  = document.getElementById("btnEnter");
 const screenPause = document.getElementById("screenPause");
 const siteIcon    = document.getElementById("siteIcon");
 
+let overlayRatio = document.getElementById("overlayRatio");
+if (!overlayRatio) {
+  overlayRatio = document.createElement("div");
+  overlayRatio.id = "overlayRatio";
+  Object.assign(overlayRatio.style, {
+    position:       "fixed",
+    top:            "0",
+    left:           "0",
+    width:          "100%",
+    height:         "100%",
+    background:     "#111",
+    color:          "#fff",
+    display:        "none",
+    justifyContent: "center",
+    alignItems:     "center",
+    flexDirection:  "column",
+    fontSize:       "1.4rem",
+    textAlign:      "center",
+    zIndex:         "99999",
+    fontFamily:     "Arial, sans-serif",
+    gap:            "12px",
+  });
+  overlayRatio.innerHTML = `
+    <div>Unsupported screen ratio!</div>
+    <div>Please resize your window.</div>
+    <div id="ratioInfo" style="font-size:0.9rem;color:#ffcc00;margin-top:8px;"></div>
+  `;
+  document.body.appendChild(overlayRatio);
+}
+
+const ratioInfo = document.getElementById("ratioInfo");
+
+const TARGET_RATIO     = 16 / 9;
+const RATIO_TOLERANCE  = 0.1;  // ±2 %
+
+let isRatioOk = true; 
+
+function checkAspectRatio() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const current = w / h;
+
+  if (ratioInfo) {
+    ratioInfo.textContent =
+      `Current: ${current.toFixed(3)}  |  Target: ${TARGET_RATIO.toFixed(3)}`;
+  }
+
+  const ok = Math.abs(current - TARGET_RATIO) <= RATIO_TOLERANCE;
+
+  if (ok === isRatioOk) return; 
+  isRatioOk = ok;
+
+  if (ok) {
+    
+    overlayRatio.style.display = "none";
+    if (audBg && hasEntered && !isPaused) {
+      audBg.muted = false;
+      if (audBg.paused) {
+        audBg.play()
+          .then(() => fadeMusicIn(800))
+          .catch(() => queueMusicStart());
+      }
+    }
+  } else {
+    
+    overlayRatio.style.display = "flex";
+    if (audBg) {
+      stopMusicFade();
+      audBg.muted = true;
+    }
+  }
+}
+
+window.addEventListener("resize", checkAspectRatio);
+window.addEventListener("load",   checkAspectRatio);
+
 const DISC_KEY   = "discAccepted";
 const DISC_TITLE = "Disclaimer!";
 const SITE_TITLE = "Home";
@@ -88,6 +164,9 @@ function fadeMusicIn(duration = MUSIC_FADE_MS) {
   const steps    = 30;
   const stepTime = duration / steps;
   let step       = 0;
+
+  // Only unmute / fade if the ratio is currently correct
+  if (!isRatioOk) return;
 
   audBg.muted  = false;
   audBg.volume = 0;
@@ -415,12 +494,17 @@ function resumeSite(event) {
   }
 
   if (audBg) {
-    audBg.muted  = false;
-    audBg.volume = 0;
+    // Respect ratio gate when resuming
+    if (isRatioOk) {
+      audBg.muted  = false;
+      audBg.volume = 0;
 
-    audBg.play()
-      .then(() => { fadeMusicIn(1000); })
-      .catch(() => { queueMusicStart(); });
+      audBg.play()
+        .then(() => { fadeMusicIn(1000); })
+        .catch(() => { queueMusicStart(); });
+    } else {
+      audBg.muted = true;
+    }
   }
 
   updateMenu(false);
@@ -451,11 +535,16 @@ function resumeHome() {
   playBgVid();
 
   if (audBg) {
-    audBg.volume = 0;
+    // Respect ratio gate when returning home
+    if (isRatioOk) {
+      audBg.volume = 0;
 
-    audBg.play()
-      .then(() => { fadeMusicIn(1000); })
-      .catch(() => { queueMusicStart(); });
+      audBg.play()
+        .then(() => { fadeMusicIn(1000); })
+        .catch(() => { queueMusicStart(); });
+    } else {
+      audBg.muted = true;
+    }
   }
 }
 
@@ -584,6 +673,9 @@ if (hasEntered) {
 
   if (btnEnter) btnEnter.addEventListener("click", enterSite);
 }
+
+// Run initial ratio check after all setup is done
+checkAspectRatio();
 
 
 function guardBgVid(video) {
