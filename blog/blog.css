@@ -5,12 +5,12 @@
 
 @font-face {
   font-family: font2;
-  src: url("blog/assets/AeonikTRIAL-Bold.otf");
+  src: url("blog/AeonikTRIAL-Bold.otf");
 }
 
 @font-face {
   font-family: font3;
-  src: url("blog/assets/AeonikTRIAL-Regular.otf")
+  src: url("blog/AeonikTRIAL-Regular.otf")
 }
 
 * {
