@@ -100,8 +100,8 @@ const SITE_TITLE = "Home";
 const DISC_ICON = "home/assets/icondisclaimer.png";
 const SITE_ICON = "home/assets/icon.png";
 
-const MUSIC_VOL     = 0.3;
-const MUSIC_FADE_MS = 1400;
+const MUSIC_VOL     = 0.2;
+const MUSIC_FADE_MS = 1500;
 
 const INTRO_MIN_MS      = 6000;  
 const INTRO_FALLBACK_MS = 14000; 
